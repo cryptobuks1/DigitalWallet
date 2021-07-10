@@ -1,0 +1,11 @@
+.contentCss{
+    border: 1px solid gray; 
+    margin: 16px; 
+    padding: 20px;
+    border-radius: 5px;
+}
+
+
+body {
+    font-family: 'Nunito', sans-serif;
+}
