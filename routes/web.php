@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WalletController;
+use App\Http\Controllers\UpdateWalletController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +19,19 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
-Route::get('/wallets', function(){
-    return view('wallets');
-})->name('wallets');
+// show dashboard
+Route::get('/dashboard', [WalletController::class, 'show'])->middleware(['auth'])->name('dashboard');
+
+// make new wallet
+Route::post('/newWallet', [WalletController::class, 'store'])->name('newWallet');
+
+
+// show all wallets
+Route::get('/wallets', [UpdateWalletController::class, 'show'])->name('wallets');
+
+// update wallets
+Route::post('/updateWallet', [UpdateWalletController::class, 'store'])->name('updateWallet');
+
 
 require __DIR__.'/auth.php';
