@@ -30,6 +30,9 @@ Route::post('/newWallet', [WalletController::class, 'store'])->name('newWallet')
 // show all wallets
 Route::get('/wallets', [UpdateWalletController::class, 'show'])->name('wallets');
 
+// show balance
+Route::get('/walletBalence/{walletId}', [UpdateWalletController::class, 'showBalence']);
+
 // update wallets
 Route::post('/updateWallet', [UpdateWalletController::class, 'store'])->name('updateWallet');
 
