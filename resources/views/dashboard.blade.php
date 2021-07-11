@@ -40,6 +40,10 @@
 
             <!-- submit -->
             <button class="btn btn-primary">Add</button>
+            <br> <br>
+            @if(isset($Success))
+                <p style="color: green">{{ $Success }}</p>
+            @endif
         </fieldset>
     </form>
 @endsection
