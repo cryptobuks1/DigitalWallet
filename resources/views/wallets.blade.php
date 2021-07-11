@@ -1,10 +1,10 @@
 @extends('layouts.main')
 
 @section('title')
-    dashboard
+    wallets
 @endsection
 
 
 @section('content')
-    slm
+    slm  wallet
 @endsection

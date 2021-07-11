@@ -33,15 +33,21 @@
                             @if (Route::has('login'))
                                 @auth
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="{{ url('/dashboard') }}">Dashboard</a>
+                                    <a class="nav-link {{ (request()->routeIs('dashboard')) ? 'active' : '' }}" aria-current="page" href="{{ route('dashboard') }}">Dashboard</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ (request()->routeIs('wallets')) ? 'active' : '' }}" aria-current="page" href="{{ route('wallets') }}">Wallets</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" aria-current="page" href="{{ route('logout') }}">logout</a>
                                 </li>
                                 @else
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">Log in</a>
+                                    <a class="nav-link {{ (request()->routeIs('login')) ? 'active' : '' }}" href="{{ route('login') }}">Log in</a>
                                 </li>
                                 @if (Route::has('register'))
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">Register</a>
+                                        <a class="nav-link {{ (request()->routeIs('register')) ? 'active' : '' }}" href="{{ route('register') }}">Register</a>
                                     </li>
                                 @endif
                                 @endauth
@@ -50,13 +56,14 @@
                     </div>
                 </div>
             </nav>
-
-            <div class="row contentCss" >
-                <div class="col"></div>
-                <div class="col-6">
-                    @yield('content')
+            <div class="container">
+                <div class="row contentCss" >
+                    <div class="col"></div>
+                    <div class="col-6">
+                        @yield('content')
+                    </div>
+                    <div class="col"></div>
                 </div>
-                <div class="col"></div>
             </div>
         </div>
     </body>
