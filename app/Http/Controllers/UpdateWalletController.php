@@ -68,10 +68,22 @@ class UpdateWalletController extends Controller
         return view('addBalence', ["walletId" => $walletId, "msg" => $msg]);
     }
 
-    public function balenceDetails()
+    public function balenceDetails($walletId)
     {
         // show all wallet logs
+        
+        $balances = Balence::get()->where('wallet_id', $walletId);
+        
+        return view('balenceDetails', ['balances' => $balances]);
+    }
 
-        return view('balenceDetails');
+
+    public function deleteWallet($walletId)
+    {
+        // delete wallet
+
+        Wallet::destroy($walletId);
+    
+        return redirect('wallets');
     }
 }

@@ -17,7 +17,7 @@ class CreateBalencesTable extends Migration
             $table->id();
             
             $table->unsignedBigInteger('wallet_id');
-            $table->foreign('wallet_id')->references('id')->on('wallets');
+            $table->foreign('wallet_id')->references('id')->on('wallets')->onDelete('cascade');
 
             $table->decimal('balance',9,3);
             $table->decimal('total',9,3);

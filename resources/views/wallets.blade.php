@@ -21,6 +21,7 @@
                     <br>
                     <a href="/addBalenceGet/{{ $wallet['id'] }}" class="btn btn-light">Add balence</a>
                     <a href="/balenceDetails/{{ $wallet['id'] }}" style="margin-left:10px" class="btn btn-success">Details</a>
+                    <a href="/deleteWallet/{{ $wallet['id'] }}" style="margin-left:10px" class="btn btn-danger">Delete</a>
                 </div>
             
         @endforeach

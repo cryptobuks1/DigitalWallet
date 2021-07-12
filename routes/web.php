@@ -39,5 +39,6 @@ Route::get('/balenceDetails/{walletId}', [UpdateWalletController::class, 'balenc
 // add balences
 Route::post('/addBalancePost/{walletId}', [UpdateWalletController::class, 'addBalencePost'])->name('addBalancePost');
 
+Route::get('/deleteWallet/{walletId}', [UpdateWalletController::class, 'deleteWallet'])->name('deleteWallet');
 
 require __DIR__.'/auth.php';
