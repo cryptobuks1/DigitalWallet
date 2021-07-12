@@ -13,6 +13,7 @@ class Wallet extends Model
         'user_id',
         'wallet_name',
         'cash_name',
-        'credit_card'
+        'credit_card',
+        'total',
     ];
 }

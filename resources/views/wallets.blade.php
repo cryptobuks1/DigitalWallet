@@ -4,17 +4,25 @@
     wallets
 @endsection
 
+@section('css')
+<link rel="stylesheet" href="css/wallets.css">
+@endsection
 
 @section('content')
     @if(isset($wallets) and !empty($wallets))
         @foreach($wallets as $wallet)
-            <a href="/walletBalence/{{ $wallet['id'] }}">
-                <div style="background: #0077b6; color: #f6f6f6; border: 1px solid #03045e; border-radius: 30px; margin-bottom: 20px; padding: 30px">
+            
+                <div class="cards">
                     <h3>Wallet Name: {{ $wallet['wallet_name'] }}</h3>
                     <br>
+                    <h5>Total balence: {{ $wallet['total'] }}</h6>
+                    <br>
                     <h6>created at: {{ $wallet['created_at'] }}</h6>
+                    <br>
+                    <a href="/addBalenceGet/{{ $wallet['id'] }}" class="btn btn-light">Add balence</a>
+                    <a href="/balenceDetails/{{ $wallet['id'] }}" style="margin-left:10px" class="btn btn-success">Details</a>
                 </div>
-            </a>
+            
         @endforeach
     @else
         <p style="color:red;">You have no Wallet yet :(</p>

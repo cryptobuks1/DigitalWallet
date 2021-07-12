@@ -22,6 +22,8 @@ class CreateWalletsTable extends Migration
             $table->string('wallet_name');
             $table->string('cash_name');
             $table->string('credit_card');
+            $table->decimal('total',9,3)->default(0);
+
             $table->timestamps();
         });
     }

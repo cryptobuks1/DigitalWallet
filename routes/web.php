@@ -28,13 +28,16 @@ Route::post('/newWallet', [WalletController::class, 'store'])->name('newWallet')
 
 
 // show all wallets
-Route::get('/wallets', [UpdateWalletController::class, 'show'])->name('wallets');
+Route::get('/wallets', [UpdateWalletController::class, 'showWallets'])->name('wallets');
 
-// show balance
-Route::get('/walletBalence/{walletId}', [UpdateWalletController::class, 'showBalence']);
+// add balences
+Route::get('/addBalenceGet/{walletId}', [UpdateWalletController::class, 'addBalenceGet']);
 
-// update wallets
-Route::post('/updateWallet', [UpdateWalletController::class, 'store'])->name('updateWallet');
+// show balences
+Route::get('/balenceDetails/{walletId}', [UpdateWalletController::class, 'balenceDetails']);
+
+// add balences
+Route::post('/addBalancePost/{walletId}', [UpdateWalletController::class, 'addBalencePost'])->name('addBalancePost');
 
 
 require __DIR__.'/auth.php';

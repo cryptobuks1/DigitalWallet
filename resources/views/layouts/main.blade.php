@@ -18,7 +18,10 @@
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
         <!-- mycss -->
-        <link rel="stylesheet" href="css/mainLayout.css">
+        <link rel="stylesheet" href="/css/mainLayout.css">
+
+        <!-- Css file -->
+        @yield('css')
     </head>
     <body>
         <div class="container-fluid">

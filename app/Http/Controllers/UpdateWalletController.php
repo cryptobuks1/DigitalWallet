@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Wallet;
+use App\Models\Balence;
 
 class UpdateWalletController extends Controller
 {
-    public function show()
+    public function showWallets()
     {
         // show all wallets
         
@@ -17,15 +18,60 @@ class UpdateWalletController extends Controller
         return view('wallets', ['wallets' => $wallets]);
     }
 
-    public function showBalence($walletId)
+
+    public function addBalenceGet($walletId)
     {
-        // show wallet balence
-        
-        return view('walletBalence');
+        // add new balence
+
+        return view('addBalence', ['walletId' => $walletId]);
     }
 
-    public function store(Request $req)
+    public function addBalencePost(Request $req, $walletId)
     {
-        # code...
+        // store new balletnce in wallet
+
+        $req->validate([
+            'balence' => 'required|between:0, 999999999:999|max:12',
+        ]);
+
+        // get total from DB
+        $userId = auth()->user()->id;
+        $wallets = Wallet::get()->where('user_id', $userId);
+        $total = $wallets[0]['total'];
+
+        // Check + or -
+        $balence = $req->balence;
+        if($req->input('submit') == "minus"){
+            $balence = -$balence;
+        }
+
+        // Make new total value
+        $total += $balence;
+        
+        if($total < 0){
+            $msg = "You are Debtor.";
+        }
+        else{
+            $msg = "Your balence successfully stored.";
+        }
+
+        // Store new balence in Balence
+        $balence = Balence::create([
+            'wallet_id'   => $walletId,
+            'balance' => $balence,
+            'total'   => $total
+        ]);
+
+        // update 'total' in Wallet
+        Wallet::whereId($walletId)->update(['total' => $total]);
+
+        return view('addBalence', ["walletId" => $walletId, "msg" => $msg]);
+    }
+
+    public function balenceDetails()
+    {
+        // show all wallet logs
+
+        return view('balenceDetails');
     }
 }

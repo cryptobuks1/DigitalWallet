@@ -1,10 +1,10 @@
 @extends('layouts.main')
 
 @section('title')
-    Balence
+    Balence Details
 @endsection
 
 
 @section('content')
-    
+    Details
 @endsection
