@@ -37,8 +37,10 @@ class UpdateWalletController extends Controller
         // get total from DB
         $userId = auth()->user()->id;
         $wallets = Wallet::get()->where('user_id', $userId);
-        $total = $wallets[0]['total'];
-
+        foreach($wallets as $wallet){
+            $total = $wallet['total'];
+        }
+        
         // Check + or -
         $balence = $req->balence;
         if($req->input('submit') == "minus"){
