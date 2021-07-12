@@ -14,7 +14,7 @@
             <!-- Wallet Name -->
             <div class="mb-3">
                 <label for="nameId" class="form-label">Wallet Name</label>
-                <input name="walletsName" type="text" id="nameId" class="form-control" placeholder="wallet name">
+                <input name="walletsName" type="text" id="nameId" class="form-control" placeholder="wallet name" required>
             </div>
 
             <!-- Cash -->

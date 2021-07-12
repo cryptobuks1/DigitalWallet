@@ -29,45 +29,48 @@ class UpdateWalletController extends Controller
     public function addBalencePost(Request $req, $walletId)
     {
         // store new balletnce in wallet
-
-        $req->validate([
-            'balence' => 'required|between:0, 999999999:999|max:12',
-        ]);
-
-        // get total from DB
-        $userId = auth()->user()->id;
-        $wallets = Wallet::get()->where('user_id', $userId);
-        foreach($wallets as $wallet){
-            $total = $wallet['total'];
+        if($req->input('submit') == "plus" or $req->input('submit') == "minus"){
+            $req->validate([
+                'balence' => 'required|between:0, 999999999:999|max:12',
+            ]);
+    
+            // get total from DB
+            $userId = auth()->user()->id;
+            $wallets = Wallet::get()->where('user_id', $userId);
+            foreach($wallets as $wallet){
+                $total = $wallet['total'];
+            }
+            
+            // Check + or -
+            $balence = $req->balence;
+            if($req->input('submit') == "minus"){
+                $balence = -$balence;
+            }
+    
+            // Make new total value
+            $total += $balence;
+            
+            if($total < 0){
+                $msg = "You are Debtor.";
+            }
+            else{
+                $msg = "Your balence successfully stored.";
+            }
+    
+            // Store new balence in Balence
+            $balence = Balence::create([
+                'wallet_id'   => $walletId,
+                'balance' => $balence,
+                'total'   => $total
+            ]);
+    
+            // update 'total' in Wallet
+            Wallet::whereId($walletId)->update(['total' => $total]);
+    
+            return view('addBalence', ["walletId" => $walletId, "msg" => $msg]);
         }
-        
-        // Check + or -
-        $balence = $req->balence;
-        if($req->input('submit') == "minus"){
-            $balence = -$balence;
-        }
 
-        // Make new total value
-        $total += $balence;
-        
-        if($total < 0){
-            $msg = "You are Debtor.";
-        }
-        else{
-            $msg = "Your balence successfully stored.";
-        }
-
-        // Store new balence in Balence
-        $balence = Balence::create([
-            'wallet_id'   => $walletId,
-            'balance' => $balence,
-            'total'   => $total
-        ]);
-
-        // update 'total' in Wallet
-        Wallet::whereId($walletId)->update(['total' => $total]);
-
-        return view('addBalence', ["walletId" => $walletId, "msg" => $msg]);
+        return redirect('addBalence');
     }
 
     public function balenceDetails($walletId)

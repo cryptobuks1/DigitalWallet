@@ -31,7 +31,7 @@ Route::post('/newWallet', [WalletController::class, 'store'])->name('newWallet')
 Route::get('/wallets', [UpdateWalletController::class, 'showWallets'])->name('wallets');
 
 // add balences
-Route::get('/addBalenceGet/{walletId}', [UpdateWalletController::class, 'addBalenceGet']);
+Route::get('/addBalenceGet/{walletId}', [UpdateWalletController::class, 'addBalenceGet'])->name('addBalence');
 
 // show balences
 Route::get('/balenceDetails/{walletId}', [UpdateWalletController::class, 'balenceDetails']);

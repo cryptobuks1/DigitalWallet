@@ -14,7 +14,7 @@
         <!-- balence value -->
         <div class="mb-3">
             <label for="balenceId" class="form-label">Balence</label>
-            <input name="balence" type="number" step=".01" min="0" max="999999999" id="balenceId" class="form-control" placeholder="wallet name">
+            <input name="balence" type="number" step=".01" min="0" max="999999999" id="balenceId" class="form-control" placeholder="wallet name" required>
         </div>
 
         <button name="submit" value="plus" class="btn btn-success">+</button>
