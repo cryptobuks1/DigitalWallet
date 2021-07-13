@@ -31,7 +31,7 @@ class UpdateWalletController extends Controller
         // store new balletnce in wallet
         if($req->input('submit') == "plus" or $req->input('submit') == "minus"){
             $req->validate([
-                'balence' => 'required|between:0, 999999999:999|max:12',
+                'balence' => 'required|between:0,999999999:999|max:12',
             ]);
     
             // get total from DB
