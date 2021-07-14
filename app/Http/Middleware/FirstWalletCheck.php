@@ -21,6 +21,7 @@ class FirstWalletCheck
 
     public function handle(Request $request, Closure $next)
     {
+        // count authenticated users wallets
         $walletsCount = Auth::user()->wallets()->count();
         
         if($walletsCount == 0){

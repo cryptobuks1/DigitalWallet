@@ -26,7 +26,7 @@ Route::get('/dashboard', [WalletController::class, 'show'])->middleware(['auth']
 Route::post('/newWallet', [WalletController::class, 'store'])->name('newWallet');
 
 
-Route::middleware('FirstWalletCheck')->group(function() {
+Route::middleware(['FirstWalletCheck', 'auth'])->group(function() {
 
     // show all wallets
     Route::get('/wallets', [UpdateWalletController::class, 'showWallets'])->name('wallets');
