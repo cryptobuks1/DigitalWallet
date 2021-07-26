@@ -16,4 +16,13 @@ class Wallet extends Model
         'credit_card',
         'total',
     ];
+
+    /**
+     * Get the Balance associated with the Wallet.
+     */
+    public function balences()
+    { 
+        // Each wallet has may balences
+        return $this->hasMany(Balence::class);
+    }
 }

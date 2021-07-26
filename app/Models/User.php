@@ -41,8 +41,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Get the Wallet associated with the User.
+     */
     public function wallets()
     {
+        // Each user has many wallet
         return $this->hasMany(Wallet::class);
     }
 }

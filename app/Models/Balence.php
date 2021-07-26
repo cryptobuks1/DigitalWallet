@@ -14,4 +14,9 @@ class Balence extends Model
         'balance',
         'total',
     ];
+
+    public function wallet()
+    {
+        return $this->belongsTo(Wallet::class);
+    }
 }
