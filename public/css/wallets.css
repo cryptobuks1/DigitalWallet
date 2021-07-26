@@ -6,3 +6,11 @@
     margin-bottom: 20px; 
     padding: 30px;
 }
+
+.success{
+    color: green;
+}
+
+.failed{
+    color: red;
+}

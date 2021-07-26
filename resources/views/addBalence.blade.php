@@ -4,6 +4,10 @@
     Add Balence
 @endsection
 
+@section('css')
+<link rel="stylesheet" href="css/wallets.css">
+@endsection
+
 
 @section('content')
 <h2>Add your balence</h2>
@@ -22,9 +26,9 @@
         <button name="submit" value="minus" class="btn btn-danger" style="margin-left:8px">-</button>
         <br> <br>
         @if(isset($msg) and $msg == 'You are Debtor.')
-            <p style="color: red">{{ $msg }}</p>
+            <p class="failed">{{ $msg }}</p>
         @elseif(isset($msg) and $msg == 'Your balence successfully stored.')
-            <p style="color: green">{{ $msg }}</p>
+            <p class="success">{{ $msg }}</p>
         @endif
     </fieldset>
 </form>

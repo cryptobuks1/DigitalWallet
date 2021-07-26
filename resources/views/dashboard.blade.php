@@ -4,6 +4,9 @@
     dashboard
 @endsection
 
+@section('css')
+<link rel="stylesheet" href="css/wallets.css">
+@endsection
 
 @section('content')
     <h2>New Wallet</h2>
@@ -42,7 +45,7 @@
             <button class="btn btn-primary">Add</button>
             <br> <br>
             @if(isset($Success))
-                <p style="color: green">{{ $Success }}</p>
+                <p class="success">{{ $Success }}</p>
             @endif
         </fieldset>
     </form>

@@ -26,6 +26,6 @@
             
         @endforeach
     @else
-        <p style="color:red;">You have no Wallet yet :(</p>
+        <p class="failed">You have no Wallet yet :(</p>
     @endif
 @endsection
