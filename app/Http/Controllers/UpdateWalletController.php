@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 // For using transaction
 use Illuminate\Support\Facades\DB;
 
+// For using Gate on destroy wallet
+use Illuminate\Support\Facades\Gate;
 
 class UpdateWalletController extends Controller
 {
@@ -117,6 +119,14 @@ class UpdateWalletController extends Controller
     public function deleteWallet($walletId)
     {
         // delete wallet
+
+        // Check authenticated user run this method
+        $Wallet_userId = Wallet::where('id', $walletId)->get('user_id');
+        $Wallet_userId = $Wallet_userId[0]["user_id"];
+
+        if(! Gate::allows("destroy-wallet", $Wallet_userId)){
+            abort(403);
+        }        
         
         Wallet::destroy($walletId);
     
