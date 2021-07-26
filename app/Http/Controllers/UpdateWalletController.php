@@ -8,6 +8,9 @@ use App\Models\Balence;
 
 use Illuminate\Support\Facades\Auth;
 
+// For using transaction
+use Illuminate\Support\Facades\DB;
+
 
 class UpdateWalletController extends Controller
 {
@@ -63,15 +66,39 @@ class UpdateWalletController extends Controller
             $msg = "Your balence successfully stored.";
         }
 
-        // Store new balence in Balence
-        $balence = Balence::create([
-            'wallet_id'   => $walletId,
-            'balance' => $balence,
-            'total'   => $total
-        ]);
+        // (Manually) Make a transaction for check both Balence and Wallet DB work correctly
+        // DB::beginTransaction();
+        // try{
+        //     // Store new balence in Balence
+        //     $balence = Balence::create([
+        //         'wallet_id'   => $walletId,
+        //         'balance' => $balence,
+        //         'total'   => $total
+        //     ]);
 
-        // update 'total' in Wallet
-        Wallet::whereId($walletId)->update(['total' => $total]);
+        //     // update 'total' in Wallet
+        //     Wallet::whereId($walletId)->update(['total' => $total]);
+            
+        //     DB::commit();
+        // }
+        // catch(\Exception $ex){
+        //     DB::rolleback();
+        //     throw $ex;
+        // }
+
+        
+        // (Automaticlly) Make a transaction for check both Balence and Wallet DB work correctly
+        DB::transaction(function() use ($walletId, $balence, $total) {
+             // Store new balence in Balence
+             $balence = Balence::create([
+                'wallet_id'   => $walletId,
+                'balance' => $balence,
+                'total'   => $total
+            ]);
+
+            // update 'total' in Wallet
+            Wallet::whereId($walletId)->update(['total' => $total]);
+        });
 
         return view('addBalence', ["walletId" => $walletId, "msg" => $msg]);
     }
