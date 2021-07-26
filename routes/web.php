@@ -19,28 +19,28 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-// show dashboard
+// Show dashboard after user authentication
 Route::get('/dashboard', [WalletController::class, 'show'])->middleware(['auth'])->name('dashboard');
 
-// make new wallet
-Route::post('/newWallet', [WalletController::class, 'store'])->name('newWallet');
+// Make new wallet
+Route::post('/newWallet', [WalletController::class, 'store'])->middleware(['auth'])->name('newWallet');
 
 
 Route::middleware(['FirstWalletCheck', 'auth'])->group(function() {
 
-    // show all wallets
+    // Show all wallets
     Route::get('/wallets', [UpdateWalletController::class, 'showWallets'])->name('wallets');
 
-    // show addBalences page
+    // Show addBalences page
     Route::get('/addBalenceGet/{walletId}', [UpdateWalletController::class, 'addBalenceGet'])->name('addBalence');
 
-    // show balences
+    // Show balences
     Route::get('/balenceDetails/{walletId}', [UpdateWalletController::class, 'balenceDetails']);
 
-    // add balences
+    // Add balences
     Route::post('/addBalancePost/{walletId}', [UpdateWalletController::class, 'addBalencePost'])->name('addBalancePost');
 
-    // delete
+    // Delete Wallet
     Route::get('/deleteWallet/{walletId}', [UpdateWalletController::class, 'deleteWallet'])->name('deleteWallet');
 });
 
