@@ -62,6 +62,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        // FirstWalletCheck middleware is for block all routes before making first wallet
         'FirstWalletCheck' => \App\Http\Middleware\FirstWalletCheck::class,
     ];
 }
