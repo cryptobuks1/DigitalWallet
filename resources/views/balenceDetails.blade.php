@@ -4,10 +4,6 @@
     Balence Details
 @endsection
 
-@section('css')
-<link rel="stylesheet" href="/css/wallets.css">
-@endsection
-
 @section('content')
     <table class="table table-dark" style="border-radius: 8px;">
         <thead>
@@ -27,7 +23,7 @@
         
         </tbody>
     @empty
-        <p class="failed">Balence is Empty</p>
+        <p class="alert alert-danger">Balence is Empty</p>
     @endforelse
 
     </table>

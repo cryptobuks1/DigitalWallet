@@ -4,10 +4,6 @@
     dashboard
 @endsection
 
-@section('css')
-<link rel="stylesheet" href="/css/wallets.css">
-@endsection
-
 @section('content')
     <h2>New Wallet</h2>
     <form action="{{ route('newWallet') }}" method="post">
@@ -44,8 +40,9 @@
             <!-- submit -->
             <button class="btn btn-primary">Add</button>
             <br> <br>
-            @if(isset($Success))
-                <p class="success">{{ $Success }}</p>
+            
+            @if (Session::get("success"))
+                <p class="alert alert-success">{{ Session::get("success") }}</p>
             @endif
         </fieldset>
     </form>

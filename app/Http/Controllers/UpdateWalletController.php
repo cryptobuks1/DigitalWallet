@@ -61,11 +61,12 @@ class UpdateWalletController extends Controller
         // Make new total value
         $total += $balence;
         
+        // Flash message
         if($total < 0){
-            $msg = "You are Debtor.";
+            $req->session()->flash("fail", "You are Debtor.");
         }
         else{
-            $msg = "Your balence successfully stored.";
+            $req->session()->flash("success", "Your balence successfully stored.");
         }
 
         // (Manually) Make a transaction for check both Balence and Wallet DB work correctly
@@ -102,7 +103,7 @@ class UpdateWalletController extends Controller
             Wallet::whereId($walletId)->update(['total' => $total]);
         });
 
-        return view('addBalence', ["walletId" => $walletId, "msg" => $msg]);
+        return view('addBalence', ["walletId" => $walletId]);
     }
 
     public function balenceDetails($walletId)

@@ -23,7 +23,7 @@
             <a href="/deleteWallet/{{ $wallet['id'] }}" style="margin-left:10px" class="btn btn-danger">Delete</a>
         </div>            
     @empty
-        <p class="failed">You have no Wallet yet :(</p>
+        <p class="alert alert-danger">You have no Wallet yet :(</p>
     @endforelse
 
 @endsection

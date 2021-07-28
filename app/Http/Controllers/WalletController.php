@@ -32,6 +32,9 @@ class WalletController extends Controller
             'credit_card' => $req->creditCard,
         ]);
 
-        return view('dashboard', ["Success" => "Your Wallet successfully created."]);
+        // Flash message
+        $req->session()->flash("success", "Your Wallet successfully created.");
+
+        return view('dashboard');
     }
 }
