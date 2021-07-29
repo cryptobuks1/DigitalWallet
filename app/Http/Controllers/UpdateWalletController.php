@@ -25,7 +25,7 @@ class UpdateWalletController extends Controller
         //$wallets = Wallet::get()->where('user_id', $userId);
 
         // Get authenticated users wallets from DB
-        $wallets = Auth::user()->wallets()->get();
+        $wallets = Auth::user()->wallets()->simplePaginate(5);
 
         return view('wallets', ['wallets' => $wallets]);
     }
