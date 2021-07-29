@@ -128,8 +128,9 @@ class UpdateWalletController extends Controller
         if(! Gate::allows("destroy-wallet", $Wallet_userId)){
             abort(403);
         }        
-        
-        Wallet::destroy($walletId);
+
+        // This query dosent need Gate, but for learn more i will put it there
+        Auth::user()->wallets()->where('id', $walletId)->delete();
     
         return redirect('wallets');
     }
