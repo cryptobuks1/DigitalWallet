@@ -8,6 +8,7 @@
     <table class="table table-dark" style="border-radius: 8px;">
         <thead>
             <tr>
+                <th scope="col">Number</th>
                 <th scope="col">Balance</th>
                 <th scope="col">Total</th>
                 <th scope="col">Date</th>
@@ -16,6 +17,7 @@
     @forelse($balances as $balance)    
         <tbody>
             <tr>
+                <td>{{ $loop->index + 1 }}</td>
                 <td>{{ $balance['balance'] }}</td>
                 <td>{{ $balance['total'] }}</td>
                 <td>{{ $balance['created_at'] }}</td>
