@@ -36,7 +36,7 @@
                             @if (Route::has('login'))
                                 @auth
                                 <li class="nav-item">
-                                    <a class="nav-link {{ (request()->routeIs('dashboard')) ? 'active' : '' }}" aria-current="page" href="{{ route('dashboard') }}">Dashboard</a>
+                                    <a @class(['nav-link', 'active' => request()->routeIs('dashboard') ]) aria-current="page" href="{{ route('dashboard') }}">Dashboard</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link {{ (request()->routeIs('wallets')) ? 'active' : '' }}" aria-current="page" href="{{ route('wallets') }}">Wallets</a>
