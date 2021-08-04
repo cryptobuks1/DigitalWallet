@@ -122,16 +122,18 @@ class UpdateWalletController extends Controller
         // delete wallet
 
         // Check authenticated user run this method
-        $Wallet_userId = Wallet::where('id', $walletId)->get('user_id');
-        $Wallet_userId = $Wallet_userId[0]["user_id"];
+        // $Wallet_userId = Wallet::where('id', $walletId)->get('user_id');
+        // $Wallet_userId = $Wallet_userId[0]["user_id"];
 
-        if(! Gate::allows("destroy-wallet", $Wallet_userId)){
-            abort(403);
-        }        
+        // if(! Gate::allows("destroy-wallet", $Wallet_userId)){
+        //     abort(403);
+        // }        
 
-        // This query dosent need Gate, but for learn more i will put it there
-        Auth::user()->wallets()->where('id', $walletId)->delete();
-    
+        // Its better to use Gate , but for learn more i will put it there  
+        // Auth::user()->wallets()->where('id', $walletId)->delete();
+        // Or
+        Auth::user()->wallets()->findOrFail($walletId)->delete();
+            
         return redirect('wallets');
     }
 }
